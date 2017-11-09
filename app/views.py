@@ -45,59 +45,8 @@ email = "adelinetush@gmail.com"
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'username': 'Adeline','email':email} 
-    return render_template('index.html', title='Home', user=user)
-
-@app.route('/')
-@app.route('/signup')
-def signup():
-    return render_template('signup.html', title='SignUp')
-
-@app.route('/categories')
-def categories():
-    user = {'username': 'Adeline','email':email} 
-    return render_template('categories.html', title='Categories', user=user)
-
-@app.route('/recipes')
-def recipes():
-    user = {'username':'Adeline', 'email': email}
-    return render_template('recipes.html', title='Recipes', user=user)
-
-@app.route('/createrecipe')
-def createrecipe():
-    user = {'username': 'Adeline','email':email} 
-    return render_template('createrecipe.html', title='CreateRecipe',user=user)
-
-@app.route('/createcategory')
-def createcategory():
-    user = {'username': 'Adeline','email':email} 
-    return render_template('createcategory.html', title='CreateCategory', user=user)
-
-@app.route('/allrecipes')
-def allrecipes():
-    return render_template('allrecipes.html', title='AllRecipes')
-
-@app.route('/allcategories')
-def allcategories():
-    return render_template('allcategories.html', title='AllCategories')
-
-@app.route('/allrecipescat')
-def allrecipescat():
-    return render_template('allrecipescat.html', title='AllRecipes')
-
-@app.route('/editrecipe')
-def editrecipe():
-    user = {'username': 'Adeline','email':email} 
-    return render_template('editrecipe.html', title='EditRecipe',  user=user)
-
-
-@app.route('/editcategory')
-def editcategory():
-    user = {'username': 'Adeline','email':email} 
-    return render_template('editcategory.html', title='EditCategory',  user=user)
-
-
-
+    api_ = {'api-ver': 'V1','name':'adeline Yummy Recipe'} 
+    return jsonify(api_)
 
 #Saving and retrieving
 @app.route("/auth/register")
@@ -141,24 +90,28 @@ def listUserRecipes():
 
 
 @app.route("/q")
+@jwt_required()
 def listRecipes():
     name = request.args.get("name")
     response = recipe.get_recipe(name);
     return jsonify(response)
 
 @app.route("/qr")
+@jwt_required()
 def searchRecipeByName():
     name = request.args.get("name")
     response = recipe.get_recipe_name(name);
     return jsonify(response)
 
 @app.route("/qri")
+@jwt_required()
 def searchRecipeById():
     id = request.args.get("id")
     response = recipe.get_recipe_id(id);
     return jsonify(response)
 
 @app.route("/qci",methods=['GET'])
+@jwt_required()
 def searchCategoryById():
     id = request.args.get("id")
     response = category.get_category_id(id);
@@ -167,6 +120,7 @@ def searchCategoryById():
 
 
 @app.route("/qg")
+@jwt_required()
 def getRecipesForCategory():
     name = request.args.get("name")
     ir = int(name)
@@ -174,24 +128,28 @@ def getRecipesForCategory():
     return jsonify(response)
 
 @app.route("/ar",methods=['POST'])
+@jwt_required()
 def addRecipes():
     r = request.get_json()
     response = recipe.add_recipe(r)
     return jsonify(response)
 
 @app.route("/ur",methods=['POST'])
+@jwt_required()
 def updateRecipe():
     r = request.get_json()
     response = recipe.update_recipe(r)
     return jsonify(response)
 
 @app.route("/uc",methods=['POST'])
+@jwt_required()
 def updateCategory():
     r = request.get_json()
     response = category.update_category(r)
     return jsonify(response)
 
 @app.route("/dr")
+@jwt_required()
 def delete_recipe():
     id = request.args.get('id')
     res = recipe.delete_recipe(id)
@@ -199,6 +157,7 @@ def delete_recipe():
 
 #Category Functions
 @app.route("/ac",methods=['POST'])
+@jwt_required()
 def addCategory():
     r = request.get_json()
     response = category.add_category(r)
@@ -206,17 +165,20 @@ def addCategory():
 
 
 @app.route("/guc")
+@jwt_required()
 def get_user_category():
     email = request.args.get('email')
     res = category.get_user_category(email)
     return jsonify(res)
 
 @app.route("/gac")
+@jwt_required()
 def get_all_category():
     res = category.get_all_category()
     return jsonify(res)
 
 @app.route("/dc")
+@jwt_required()
 def delete_category():
     id = request.args.get('id')
     ir = int(id)
@@ -224,6 +186,7 @@ def delete_category():
     return jsonify(res)
 
 @app.route("/uc")
+@jwt_required()
 def update_category():
     cat = request.get_json()
     res = category.update_category(cat)
