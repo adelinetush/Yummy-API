@@ -70,8 +70,8 @@ class User(BaseModel,db.Model):
     def __init__(self, name, email, password):
         self.name = name
         self.email = email;
-        self.password_hash  = self.hash_password(password)
-        self.password = self.hash_password(password)
+        self.password_hash  = password
+        self.password = password
 
     def __str__(self):
             return "User(id='%s')" % self.id
@@ -89,7 +89,7 @@ class User(BaseModel,db.Model):
 
     def serialize(self):
             return {
-            'id':self.Id,
+            'id':self.id,
             'name':self.name,
             'email':self.email,
             'password':self.password

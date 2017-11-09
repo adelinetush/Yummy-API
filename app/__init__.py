@@ -29,7 +29,7 @@ POSTGRESTEST = {
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost:5432/yummy'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
-%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
+%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRESTEST
 
 db.init_app(app)
 
