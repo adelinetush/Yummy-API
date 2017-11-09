@@ -1,0 +1,4 @@
+{
+  "app/tests/test_category_controller.py::test_category_controller::test_add_category": true,
+  "test_sample.py::test_answer": true
+}

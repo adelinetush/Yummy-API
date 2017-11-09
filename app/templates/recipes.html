@@ -1,0 +1,238 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            background: #B9B9C8;
+        }
+
+        .category {
+            background-color: rgba(178, 115, 51, 0.4);
+            margin-top: 20%;
+        }
+
+        .well {
+            background-color: rgba(115, 115, 255, 0.4);
+        }
+
+        #recipediv {
+            background-color: rgba(178, 115, 51, 0.4);
+            margin-left: 5%;
+            margin-bottom: 2%;
+            min-height: 300px
+        }
+        /**Footer **/
+
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            position: absolute;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="useremail" hidden value={{user.email}}>
+    <header font-family:PT Sans , sans-serif;>
+        <div class="container">
+            <!-- Topper w/ logo -->
+            <div class="row hidden-xs topper">
+                <div class="col-xs-7 col-sm-7" style="padding-top: 5%;">
+                </div>
+            </div>
+            <!-- End Topper -->
+            <!-- Navigation -->
+            <div class="row">
+                <div class="col-md-11" style="padding-left: 10%;">
+                    <nav class="navbar navbar-inverse" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+                                <span class="sr-only"> Toggle Navigation </span>
+                                <span class="icon-bar"> </span>
+                                <span class="icon-bar"> </span>
+                                <span class="icon-bar"> </span>
+
+                            </button>
+                        </div>
+                        <!--navbar-header-->
+
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav nav-justified">
+                                <li>
+                                    <a href="/index"> HOME </a>
+                                </li>
+                                <li>
+                                    <a href="/categories"> CATEGORIES </a>
+                                </li>
+                                <li>
+                                    <a href="/recipes"> RECIPES </a>
+                                </li>
+                                <li>
+                                    <a href="/createrecipe"> ADD NEW </a>
+                                </li>
+                                <li>
+                                    <a href="/index"> LOGOUT </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container" style="padding-bottom: 5%;">
+        <div class="row">
+            <h1 class="well">RECIPES</h1>
+        </div>
+        <div class="row" style="padding-bottom: 5%;">
+            <div class=" col-md-12 recipes">
+
+            </div>
+        </div>
+        <button class="class=" btn btn-default "">
+            <a href="/createrecipe">Add Recipe</a>
+        </button>
+    </div>
+    <footer>
+        <p class="text-center text-uppercase" style="padding-top: 0.5%;">YUMMY RECIPES ANDELA</p>
+        <p class="text-center">Created by Adeline</p>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<script src="js/main.js"></script>-->
+    <!--<div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=1626279997680641';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>-->
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        var recipeid;
+        $(document).ready(function (e) {
+            /**http: //127.0.0.1:5000/qu?username=adelinetush@gmail.com**/
+            var useremail = document.getElementById("useremail").value;
+
+            //To get the recipes
+            $.ajax({
+                type: "GET",
+                url: '/qu?username=' + useremail,
+                contentType: false,
+                dataType: 'json',
+                data: {},
+                async: false,
+                success: function (result) {
+                    console.log(JSON.stringify(result));
+
+                    for (var i = 0; i < result.length; i++) {
+                        var div = document.getElementsByClassName("recipes")[0];
+                        var div_child = document.createElement("div");
+                        div_child.id = "recipediv";
+                        div_child.className = "col-md-3"
+                        var h1 = document.createElement("h2");
+                        h1.innerHTML = result[i].name;
+                        div_child.appendChild(h1);
+                        var h3 = document.createElement("h3");
+                        h3.innerHTML = "Ingredients";
+                        div_child.appendChild(h3);
+                        h3.style.textDecoration = "underline";
+                        var p = document.createElement("p");
+                        p.innerHTML = result[i].ingredients;
+                        div_child.appendChild(p);
+                        var h3 = document.createElement("h3");
+                        h3.innerHTML = "Description";
+                        h3.style.textDecoration = "underline";
+                        div_child.appendChild(h3);
+                        var p = document.createElement("p");
+                        p.innerHTML = result[i].description;
+                        div_child.appendChild(p);
+                        var button = document.createElement("button");
+                        button.className = "btn btn-default";
+                        button.innerText = "Edit";
+                        var recipeid = result[i].id;
+                        button.name = result[i].name;
+                        button.addEventListener('click', function (e) {
+                            console.log(e.target.name)
+                            //window.location = '/qr?name=' + e.target.name
+                            $.ajax({
+                                type: "GET",
+                                dataType: "json",
+                                url: '/qr?name=' + e.target.name,
+                                data: {},
+                                contentType: "application/json; charset=utf-8",
+                                success: function (result) {
+
+                                    //alert(JSON.stringify(result[0]));
+                                    console.log(result[0].id);
+                                    window.location.href = '/editrecipe?id='+result[0].id;
+                                },
+                            });
+
+                        })
+                        var delete_btn = document.createElement("button");
+                        delete_btn.className = "btn btn-default";
+                        delete_btn.innerText = "Delete";
+                        var recipeid = result[i].id;
+                        delete_btn.id = recipeid
+                        delete_btn.addEventListener('click',function(e){
+                            console.log(e.target.id)
+                            $.ajax({
+                                type: "GET",
+                                dataType: "json",
+                                url: '/dr?id=' + e.target.id,
+                                data: {},
+                                contentType: "application/json; charset=utf-8",
+                                success: function (result) {
+
+                                    alert(JSON.stringify(result));
+                                    window.location.href = '/recipes'
+                                },
+                            });
+                        })
+
+                        div_child.appendChild(button);
+                        div_child.appendChild(delete_btn)
+                        div.appendChild(div_child);
+
+                    }
+
+
+
+
+                    /*result.forEach(function (val, i) {
+                    $('#recipeslist').append($('<li>').text(val.name + val.description));
+                    })*/
+                }
+
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background:#B9B9C8;
+}
+/**Landing **/
+.landing {
+    position: relative;
+    padding: 60px 0 60px 0;
+    width: 100%;
+    min-height: 100%;
+    background: url('../images/bg.png') no-repeat center center;
+    background-size: cover;
+}
+
+.landing h1 {
+    margin-top: 10%;
+    font-size: 40px;
+    margin-top: 10%;
+}
+
+.well{
+    background-color: rgba(115, 115, 255, 0.4);
+}
+
+/**Listings **/
+.category{
+    background-color: rgba(178, 115, 51, 0.4);
+    margin-top: 20%;
+}
+/**Listings **/
+#listing {
+    background-color: brown;
+}
+
+
+
+/**Footer **/
+footer {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding-bottom: 0.5%;
+}
+
+

@@ -1,0 +1,316 @@
+{
+	"variables": [],
+	"info": {
+		"name": "yummy andela",
+		"_postman_id": "d57fe8ba-c2ae-223f-5c93-167445701a3f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/register?username=adeltush&password=adeline123&email=adelinetush@gmail.com",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"register"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "adeltush",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "password",
+							"value": "adeline123",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "email",
+							"value": "adelinetush@gmail.com",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login?email=adelinetush@gmail.com&password=adeline123",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "adelinetush@gmail.com",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "password",
+							"value": "adeline123",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Autho",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add Recipes",
+			"request": {
+				"url": "http://127.0.0.1:5000/ar",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category\":1,\n\t\"name\":\"Tuna Casserole\",\n\t\"email\":\"adelinetush@gmail.com\",\n\t\"description\":\"The best damn dish in the world\",\n\t\"ingredients\":[\n\t\t\"1 pound of Tuna\",\n\t\t\"A bag of Flour\"\n\t]\n}"
+				},
+				"description": "http://127.0.0.1:5000/ar"
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Recipes",
+			"request": {
+				"url": {
+					"raw": "http://127.0.0.1:5000/qu?username=adelinetush@gmail.com",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"qu"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "adelinetush@gmail.com",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "http://127.0.0.1:5000/qu?username=adelinetush@gmail.com"
+			},
+			"response": []
+		},
+		{
+			"name": "Query Recipes",
+			"request": {
+				"url": {
+					"raw": "http://127.0.0.1:5000/q?name=Tuna",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"q"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Tuna",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "http://127.0.0.1:5000/q?name=Tuna"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Category",
+			"request": {
+				"url": "http://127.0.0.1:5000/ac",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"adelinetush@gmail.com\",\n\t\"name\":\"Casseroles\",\n\t\"description\":\"A subset of awesome foods\"\n}"
+				},
+				"description": "http://127.0.0.1:5000/ac"
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Categories",
+			"request": {
+				"url": {
+					"raw": "http://127.0.0.1:5000/guc?email=adelinetush@gmail.com",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"guc"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "adelinetush@gmail.com",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "http://127.0.0.1:5000/guc?email=adelinetush@gmail.com"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Categories",
+			"request": {
+				"url": "http://127.0.0.1:5000/gac",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "http://127.0.0.1:5000/gac"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Auth Token",
+			"request": {
+				"url": "http://adeline:$6$rounds=656000$lpWmEFyRsF5zQSyP$44SdXK4jp7ze5XKUQlBF4P3OPB.suYAGtgnQkXXISu.Mh9gJB0GAxAs6chy98oCez0EIHi2A6OUbmpDF6lCH4.@127.0.0.1:5000/api/token",
+				"method": "GET",
+				"header": [
+					{
+						"key": "username",
+						"value": "adelinetush@gmail.com",
+						"description": ""
+					},
+					{
+						"key": "password",
+						"value": "\"$6$rounds=656000$lpWmEFyRsF5zQSyP$44SdXK4jp7ze5XKUQlBF4P3OPB.suYAGtgnQkXXISu.Mh9gJB0GAxAs6chy98oCez0EIHi2A6OUbmpDF6lCH4.\"",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticated API call to empty resource",
+			"request": {
+				"url": "http://eyJhbGciOiJIUzI1NiIsImlhdCI6MTUwOTY1NjMwOSwiZXhwIjoxNTA5NjU2OTA5fQ.eyJpZCI6NH0.mN3h_OSqVJSzX7IZqufk39C9e4OEeKbKiUq1U6Jo6kk@127.0.0.1:5000/api/resource",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsImlhdCI6MTUwOTY1NjIxMSwiZXhwIjoxNTA5NjU2ODExfQ.eyJpZCI6NH0.hzewLZBEYYIK5Uv0pIsmkG0ghlUo5D5Ah_amO7cZErY",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": "http://eyJhbGciOiJIUzI1NiIsImlhdCI6MTUwOTY1NjMwOSwiZXhwIjoxNTA5NjU2OTA5fQ.eyJpZCI6NH0.mN3h_OSqVJSzX7IZqufk39C9e4OEeKbKiUq1U6Jo6kk@127.0.0.1:5000/api/resource"
+			},
+			"response": []
+		}
+	]
+}
